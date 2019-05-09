@@ -1,0 +1,57 @@
+package com.bookshop01.mypage.dao;
+
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+
+import com.bookshop01.member.vo.MemberVO;
+import com.bookshop01.order.vo.OrderVO;
+
+@Repository("myPageDAO")
+public class MyPageDAOImpl implements MyPageDAO{
+	@Autowired
+	private SqlSession sqlSession;
+
+	@Override
+	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List selectMyOrderInfo(String order_id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateMyInfo(Map memberMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateMyOrderCancel(String order_id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}

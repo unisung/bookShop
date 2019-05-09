@@ -1,0 +1,51 @@
+package com.bookshop01.goods.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
+
+import com.bookshop01.goods.vo.GoodsVO;
+import com.bookshop01.goods.vo.ImageFileVO;
+
+@Repository("goodsDAO")
+public class GoodsDAOImpl  implements GoodsDAO{
+	@Autowired
+	private SqlSession sqlSession;
+
+	@Override
+	public List<GoodsVO> selectGoodsList(String goodsStatus) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> selectKeywordSearch(String keyword) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public GoodsVO selectGoodsDetail(String goods_id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+}
