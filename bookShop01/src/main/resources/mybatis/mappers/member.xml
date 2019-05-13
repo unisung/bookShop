@@ -34,5 +34,79 @@
 		<result property="namujiAddress" column="namujiAddress" />
 		<result property="joinDate" column="joinDate" />
 	</resultMap>	
+	
+	<resultMap type="com.bookshop01.member.vo.LocalTelNo" id="locaTelNo">
+		<result property="seq" column="seq"/>
+		<result property="localNo" column="localNo"/>
+	</resultMap>
+	
+	
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+		<![CDATA[
+			select decode(count(*),1,'true',0,'false')
+			  from t_shopping_member
+			  where member_id=#{id}
+		]]>
+	</select>
+	
+	<select id="getlocalTelNo" resultMap="locaTelNo">
+		select * from localTel order by seq
+	</select>
 
+     <insert id="insertNewMember" parameterType="memberVO">
+       insert into t_shopping_member( member_id,
+													 member_pw,
+													 member_name,
+													 member_gender,
+													 tel1,
+													 tel2,
+													 tel3,
+													 hp1,
+													 hp2,
+													 hp3,
+													 smssts_yn,
+													 email1,
+													 email2,
+													 emailsts_yn,
+													 zipcode,
+													 roadAddress,
+													 jibunAddress,
+													 namujiAddress,
+													 member_birth_y,
+													 member_birth_m,
+													 member_birth_d,
+													 member_birth_gn )
+        							  values( #{member_id},
+												 #{member_pw},
+												 #{member_name},
+												 #{member_gender},
+												 #{tel1},
+												 #{tel2},
+												 #{tel3},
+												 #{hp1},
+												 #{hp2},
+												 #{hp3},
+												 #{smssts_yn},
+												 #{email1},
+												 #{email2},
+												 #{emailsts_yn},
+												 #{zipcode},
+												 #{roadAddress},
+												 #{jibunAddress},
+												 #{namujiAddress},
+												 #{member_birth_y},
+												 #{member_birth_m},
+												 #{member_birth_d},
+												 #{member_birth_gn}
+                                            )
+     </insert>
+
+<select id="login" parameterType="java.util.Map" resultType="memberVO">
+   <![CDATA[
+   	   select * 
+   	     from t_shopping_member
+   	   where member_id=#{member_id}
+   	      and member_pw=#{member_pw}
+   ]]>
+</select>
 </mapper>

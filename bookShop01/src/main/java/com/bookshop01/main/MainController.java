@@ -29,6 +29,7 @@ public class MainController extends BaseController {
 		HttpSession session;
 		ModelAndView mav=new ModelAndView();
 		String viewName=(String)request.getAttribute("viewName");
+		System.out.println("viewName:"+viewName);
 		mav.setViewName(viewName);
 		
 		session=request.getSession();

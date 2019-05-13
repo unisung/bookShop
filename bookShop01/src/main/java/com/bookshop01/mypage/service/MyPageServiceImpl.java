@@ -42,8 +42,9 @@ public class MyPageServiceImpl  implements MyPageService{
 
 	@Override
 	public MemberVO modifyMyInfo(Map memberMap) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String member_id = (String)memberMap.get("member_id");
+		myPageDAO.updateMyInfo(memberMap);//수정처리
+		return myPageDAO.selectMyDetailInfo(member_id);//수정된 db정보 추출
 	}
 
 	@Override
@@ -54,8 +55,7 @@ public class MyPageServiceImpl  implements MyPageService{
 
 	@Override
 	public MemberVO myDetailInfo(String member_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return myPageDAO.selectMyDetailInfo(member_id);
 	}
 
 	

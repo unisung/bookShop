@@ -1,5 +1,6 @@
 package com.bookshop01.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bookshop01.member.dao.MemberDAO;
+import com.bookshop01.member.vo.LocalTelNo;
 import com.bookshop01.member.vo.MemberVO;
 
 @Service("memberService")
@@ -18,20 +20,23 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO login(Map loginMap) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.login(loginMap);
 	}
 
 	@Override
 	public void addMember(MemberVO memberVO) throws Exception {
-		// TODO Auto-generated method stub
-		
+		System.out.println(memberVO.getMember_id());
+		memberDAO.insertNewMember(memberVO);
 	}
 
 	@Override
 	public String overlapped(String id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.selectOverlappedID(id);
+	}
+
+	@Override
+	public  List<LocalTelNo> getLocalTelNo() throws Exception {
+		return memberDAO.getLocalTelNo();
 	}
 	
 }

@@ -70,17 +70,17 @@ function fn_overlapped(){
     }
     $.ajax({
        type:"post",
-       async:false,  
+       async:false,  //동기
        url:"${contextPath}/member/overlapped.do",
        dataType:"text",
        data: {id:_id},
-       success:function (data,textStatus){
-          if(data=='false'){
+       success:function (data,textStatus){//status=4, ok
+          if(data=='false'){//회원번호가 존재하지않으면
        	    alert("사용할 수 있는 ID입니다.");
        	    $('#btnOverlapped').prop("disabled", true);
        	    $('#_member_id').prop("disabled", true);
        	    $('#member_id').val(_id);
-          }else{
+          }else{//이미 id가 존재하면
         	  alert("사용할 수 없는 ID입니다.");
           }
        },
@@ -172,32 +172,12 @@ function fn_overlapped(){
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">전화번호</td>
-					<td><select  name="tel1">
-							<option>없음</option>
-							<option value="02">02</option>
-							<option value="031">031</option>
-							<option value="032">032</option>
-							<option value="033">033</option>
-							<option value="041">041</option>
-							<option value="042">042</option>
-							<option value="043">043</option>
-							<option value="044">044</option>
-							<option value="051">051</option>
-							<option value="052">052</option>
-							<option value="053">053</option>
-							<option value="054">054</option>
-							<option value="055">055</option>
-							<option value="061">061</option>
-							<option value="062">062</option>
-							<option value="063">063</option>
-							<option value="064">064</option>
-							<option value="0502">0502</option>
-							<option value="0503">0503</option>
-							<option value="0505">0505</option>
-							<option value="0506">0506</option>
-							<option value="0507">0507</option>
-							<option value="0508">0508</option>
-							<option value="070">070</option>
+					<td> 
+					<select  name="tel1">
+					   <option>없음</option>
+					<c:forEach var="localNo" items="${localTelNo}">
+					    <option value="${localNo.localNo}">${localNo.localNo}</option>
+					</c:forEach>
 					   </select> - <input  size="10px" type="text" name="tel2"> - <input size="10px"  type="text" name="tel3">
 					</td>
 				</tr>

@@ -37,14 +37,12 @@ public class MyPageDAOImpl implements MyPageDAO{
 
 	@Override
 	public void updateMyInfo(Map memberMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("mapper.mypage.updateMyInfo", memberMap);
 	}
 
 	@Override
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("mapper.mypage.selectMyDetailInfo", member_id);
 	}
 
 	@Override
