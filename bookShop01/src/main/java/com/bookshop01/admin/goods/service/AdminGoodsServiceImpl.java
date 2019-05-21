@@ -28,20 +28,26 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
 	@Override
 	public int addNewGoods(Map newGoodsMap) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return adminGoodsDAO.insertNewGoods(newGoodsMap);
 	}
 
 	@Override
 	public List<GoodsVO> listNewGoods(Map condMap) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return adminGoodsDAO.selectNewGoodsList(condMap);
 	}
 
 	@Override
 	public Map goodsDetail(int goods_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Map goodsMap = new HashMap();
+		GoodsVO goodsVO =adminGoodsDAO.selectGoodsDetail(goods_id);
+		List imageFileList = adminGoodsDAO.selectGoodsImageFileList(goods_id);
+		
+		goodsMap.put("goods", goodsVO);
+		
+		if(imageFileList!=null)
+		   goodsMap.put("imageFileList", imageFileList);
+		
+		return goodsMap; 
 	}
 
 	@Override
@@ -52,14 +58,12 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 
 	@Override
 	public void modifyGoodsInfo(Map goodsMap) throws Exception {
-		// TODO Auto-generated method stub
-		
+		adminGoodsDAO.updateGoodsInfo(goodsMap);
 	}
 
 	@Override
 	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception {
-		// TODO Auto-generated method stub
-		
+		adminGoodsDAO.updateGoodsImage(imageFileList);
 	}
 
 	@Override

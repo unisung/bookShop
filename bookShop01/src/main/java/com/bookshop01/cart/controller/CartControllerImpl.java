@@ -33,28 +33,85 @@ public class CartControllerImpl extends BaseController implements CartController
 	CartVO cartVO;
 	@Autowired
 	MemberVO memberVO;
+	
+	
 	@Override
+	@RequestMapping(value="/myCartList.do" ,method=RequestMethod.GET)
 	public ModelAndView myCartMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("memberInfo");
+		String member_id = memberVO.getMember_id();
+		cartVO.setMember_id(member_id);
+		Map<String,List>cartMap = cartService.myCartList(cartVO);
+		session.setAttribute("cartMap", cartMap);//장바구니 목록화면에서 상품주문시 사용,세션에 저장
+		return mav;
 	}
+	
 	@Override
-	public String addGoodsInCart(int goods_id, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/addGoodsInCart.do",method=RequestMethod.POST) 
+	public String addGoodsInCart(@RequestParam("goods_id") int goods_id, 
+			                                   HttpServletRequest request,
+			                                   HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		memberVO = (MemberVO)session.getAttribute("memberInfo");
+		if(memberVO!=null) {
+		
+		String member_id = memberVO.getMember_id();
+		cartVO.setMember_id(member_id);
+		cartVO.setGoods_id(goods_id);
+		//카트에 동일아이디로 저장한 동일상품이 있는지 확인
+		boolean isAlreadyExisted = cartService.findCartGoods(cartVO);
+		if(isAlreadyExisted) {//있으면 
+			return "already_existed";
+		}else {//없으면 추가
+			cartService.addGoodsInCart(cartVO);
+			return "add_success";
+		 }
+		}else {
+			return "add_fail";
+		}
+	}
+	
+	
+	@Override
+	@RequestMapping(value="/modifyCartQty.do",method=RequestMethod.POST)
+	public String modifyCartQty(@RequestParam("goods_id")int goods_id,
+			                                 @RequestParam("cart_goods_qty")int cart_goods_qty, 
+			                                 HttpServletRequest request,
+			                                 HttpServletResponse response) throws Exception {
+	   HttpSession session=request.getSession();
+	   memberVO = (MemberVO)session.getAttribute("memberInfo");
+	   String member_id = memberVO.getMember_id();
+	   cartVO.setGoods_id(goods_id);
+	   cartVO.setMember_id(member_id);
+	   cartVO.setCart_goods_qty(cart_goods_qty);
+	   boolean result = cartService.modifyCartQty(cartVO);
+	   
+	   if(result==true) {
+		   return "modify_success";
+	   }else {
+		   return "modify_failed";
+	   }
+	}
+	
+	@Override
+	@RequestMapping(value="/removeCartGoods.do",method=RequestMethod.POST)
+	public ModelAndView removeCartGoods(@RequestParam("cart_id") int cart_id, 
+			                                                 @RequestParam("goods_id") int goods_id,
+			                                                 HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public String modifyCartQty(int goods_id, int cart_goods_qty, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ModelAndView removeCartGoods(int cart_id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HttpSession session = request.getSession();
+		memberVO = (MemberVO)session.getAttribute("memberInfo");
+		String member_id = memberVO.getMember_id();
+		   
+		System.out.println("cart_id="+cart_id);
+		System.out.println("goods_id="+goods_id);
+		ModelAndView mav=new ModelAndView();
+		cartService.removeCartGoods(cart_id,goods_id,member_id);
+		mav.setViewName("redirect:/cart/myCartList.do");
+		return mav;
 	}
 	
 }

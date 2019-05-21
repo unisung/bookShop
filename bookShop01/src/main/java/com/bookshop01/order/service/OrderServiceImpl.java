@@ -26,8 +26,12 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void addNewOrder(List<OrderVO> myOrderList) throws Exception {
-		// TODO Auto-generated method stub
-		
+		//주문테이블에 저장
+		   orderDAO.insertNewOrder(myOrderList);
+		//카트에서 주문상품 제거
+			  for(int i=0;i<myOrderList.size();i++) {
+				  orderDAO.removeGoodsFromCart(myOrderList.get(i));
+			  }
 	}
 
 	@Override

@@ -21,14 +21,28 @@ public class GoodsServiceImpl implements GoodsService{
 
 	@Override
 	public Map<String, List<GoodsVO>> listGoods() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String,List<GoodsVO>> goodsMap 
+		                     = new HashMap<String, List<GoodsVO>>();
+		List<GoodsVO> goodsList = goodsDAO.selectGoodsList("bestseller");
+		goodsMap.put("bestseller", goodsList);
+		
+		goodsList = goodsDAO.selectGoodsList("newbook");
+		goodsMap.put("newbook", goodsList);
+		
+		goodsList = goodsDAO.selectGoodsList("steadyseller");
+		goodsMap.put("steadyseller", goodsList);
+		
+		return goodsMap;
 	}
 
 	@Override
 	public Map goodsDetail(String _goods_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Map goodsMap = new HashMap();
+		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(_goods_id);
+		goodsMap.put("goodsVO", goodsVO);
+		List<ImageFileVO> imageList = goodsDAO.selectGoodsDetailImage(_goods_id);
+		goodsMap.put("imageList", imageList);
+		return goodsMap; 
 	}
 
 	@Override

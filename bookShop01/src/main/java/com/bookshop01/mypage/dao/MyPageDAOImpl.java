@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.bookshop01.member.vo.CouponVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
 
@@ -19,14 +20,12 @@ public class MyPageDAOImpl implements MyPageDAO{
 
 	@Override
 	public List<OrderVO> selectMyOrderGoodsList(String member_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList", member_id);
 	}
 
 	@Override
 	public List selectMyOrderInfo(String order_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.mypage.selectMyOrderInfo",order_id );
 	}
 
 	@Override
@@ -49,6 +48,11 @@ public class MyPageDAOImpl implements MyPageDAO{
 	public void updateMyOrderCancel(String order_id) throws DataAccessException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public CouponVO selectMyCoupons(String member_id) throws DataAccessException {
+		return sqlSession.selectOne("mapper.mypage.selectMyCoupons", member_id);
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.bookshop01.member.vo.CouponVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
 
@@ -15,4 +16,5 @@ public interface MyPageDAO {
 	public void updateMyInfo(Map memberMap) throws DataAccessException;
 	public MemberVO selectMyDetailInfo(String member_id) throws DataAccessException;
 	public void updateMyOrderCancel(String order_id) throws DataAccessException;
+	public CouponVO selectMyCoupons(String member_id) throws DataAccessException;
 }

@@ -61,10 +61,10 @@ function fn_modify_goods(goods_id, attribute){
 		value=frm_mod_goods.goods_writer_intro.value;
 	}else if(attribute=='goods_intro'){
 		value=frm_mod_goods.goods_intro.value;
-	}else if(attribute=='publisher_comment'){
-		value=frm_mod_goods.publisher_comment.value;
-	}else if(attribute=='recommendation'){
-		value=frm_mod_goods.recommendation.value;
+	}else if(attribute=='goods_publisher_comment'){
+		value=frm_mod_goods.goods_publisher_comment.value;
+	}else if(attribute=='goods_recommendation'){
+		value=frm_mod_goods.goods_recommendation.value;
 	}
 
 	$.ajax({

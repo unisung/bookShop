@@ -18,13 +18,13 @@ public class AdminOrderDAOImpl  implements AdminOrderDAO{
 
 	@Override
 	public ArrayList<OrderVO> selectNewOrderList(Map condMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderVO> ordeList=(ArrayList)sqlSession.selectList("mapper.admin.order.selectNewOrderList",condMap);
+		return ordeList;
 	}
 
 	@Override
 	public void updateDeliveryState(Map deliveryMap) throws DataAccessException {
-		// TODO Auto-generated method stub
+		sqlSession.update("mapper.admin.order.updateDeliveryState", deliveryMap);
 		
 	}
 

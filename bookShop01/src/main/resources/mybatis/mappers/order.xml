@@ -42,5 +42,76 @@
 		<result property="goods_fileName" column="goods_fileName" />
 	</resultMap>
 	
+	 <insert id="insertNewOrder" parameterType="orderVO" >
+	 <selectKey resultType="int" keyProperty="order_seq_num" order="BEFORE">
+	 		 select order_seq_num.nextval from dual
+	 </selectKey>
+	   <![CDATA[
+	   	insert into 
+	   	t_shopping_order( order_seq_num,
+								 order_id,
+								 member_id,
+								 goods_id,
+								 orderer_name,
+								 goods_title,
+								 order_goods_qty,
+								 goods_sales_price,
+								 goods_filename,
+								 receiver_name,
+								 receiver_hp1,
+								 receiver_hp2,
+								 receiver_hp3,
+								 receiver_tel1,
+								 receiver_tel2,
+								 receiver_tel3,
+								 delivery_address,
+								 delivery_method,
+								 delivery_message,
+								 gift_wrapping,
+								 pay_method,
+								 card_com_name,
+								 card_pay_month,
+								pay_orderer_hp_num,
+								 orderer_hp
+								 )
+								 values(
+								 #{order_seq_num},
+								 #{order_id},
+								 #{member_id},
+								 #{goods_id},
+								 #{orderer_name},
+								 #{goods_title},
+								 #{order_goods_qty},
+								 #{goods_sales_price},
+								 #{goods_fileName},
+								 #{receiver_name},
+								 #{receiver_hp1},
+								 #{receiver_hp2},
+								 #{receiver_hp3},
+								 #{receiver_tel1},
+								 #{receiver_tel2},
+								 #{receiver_tel3},
+								 #{delivery_address},
+								 #{delivery_method},
+								 #{delivery_message},
+								 #{gift_wrapping},
+								 #{pay_method},
+								 #{card_com_name},
+								 #{card_pay_month},
+								 #{pay_orderer_hp_num},
+								 #{orderer_hp}
+								 )			   	
+	   ]]>
+	 </insert>
 	 
+	 <select id="selelctOrederID" resultType="int">
+	     <![CDATA[
+	     	select seq_order_id.nextval from dual
+	     ]]>
+	 </select>
+	 
+	 <delete id="deleteGoodsFromCart" parameterType="orderVO">
+	 	  delete from t_shopping_cart
+	 	  where goods_id=#{goods_id}
+	 </delete>
 </mapper>

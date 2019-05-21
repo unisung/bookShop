@@ -50,15 +50,16 @@
 				goods_id:goods_id
 				
 			},
-			success : function(data, textStatus) {
+			success : function(data, textStatus) {//readystate=4, httpstatus=200
 				//alert(data);
 			//	$('#message').append(data);
 				if(data.trim()=='add_success'){
 					imagePopup('open', '.layer01');	
 				}else if(data.trim()=='already_existed'){
 					alert("이미 카트에 등록된 상품입니다.");	
+				}else {
+					alert("로그인 후 처리하세요");
 				}
-				
 			},
 			error : function(data, textStatus) {
 				alert("에러가 발생했습니다."+data);
@@ -67,6 +68,7 @@
 				//alert("작업을완료 했습니다");
 			}
 		}); //end ajax	
+		
 	}
 
 	function imagePopup(type) {

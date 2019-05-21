@@ -18,8 +18,7 @@ public class GoodsDAOImpl  implements GoodsDAO{
 
 	@Override
 	public List<GoodsVO> selectGoodsList(String goodsStatus) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.goods.selectGoodsList", goodsStatus);
 	}
 
 	@Override
@@ -30,15 +29,15 @@ public class GoodsDAOImpl  implements GoodsDAO{
 
 	@Override
 	public GoodsVO selectGoodsDetail(String goods_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("mapper.goods.selectGoodsDetail", goods_id);
 	}
 
+	
 	@Override
 	public List<ImageFileVO> selectGoodsDetailImage(String goods_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goods_id);
 	}
+	
 
 	@Override
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException {

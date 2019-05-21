@@ -20,26 +20,22 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 
 	@Override
 	public int insertNewGoods(Map newGoodsMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert("mapper.admin.goods.insertNewGoods", newGoodsMap);
 	}
-
+	
 	@Override
 	public List<GoodsVO> selectNewGoodsList(Map condMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.admin.goods.selectNewGoodsList",condMap);
 	}
 
 	@Override
 	public GoodsVO selectGoodsDetail(int goods_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("mapper.admin.goods.selectGoodsDetail", goods_id);
 	}
-
+	
 	@Override
 	public List selectGoodsImageFileList(int goods_id) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.admin.goods.selectGoodsImageFileList", goods_id);
 	}
 
 	@Override
@@ -50,14 +46,15 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 
 	@Override
 	public void updateGoodsInfo(Map goodsMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("mapper.admin.goods.updateGoodsInfo",goodsMap);
 	}
 
 	@Override
 	public void updateGoodsImage(List<ImageFileVO> imageFileList) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		for(int i=0;i<imageFileList.size();i++) {
+			ImageFileVO imageFileVO = imageFileList.get(i);
+			sqlSession.update("mapper.admin.goods.updateGoodsImage",imageFileVO);
+		}
 	}
 
 	@Override

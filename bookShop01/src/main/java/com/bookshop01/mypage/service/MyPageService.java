@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.bookshop01.member.vo.CouponVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.order.vo.OrderVO;
 
@@ -14,5 +15,6 @@ public interface MyPageService{
 	public MemberVO  modifyMyInfo(Map memberMap) throws Exception;
 	public void cancelOrder(String order_id) throws Exception;
 	public MemberVO myDetailInfo(String member_id) throws Exception;
+	public CouponVO myCoupons(String member_id) throws Exception;
 
 }

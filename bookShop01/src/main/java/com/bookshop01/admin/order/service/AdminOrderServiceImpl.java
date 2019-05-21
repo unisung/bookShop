@@ -36,13 +36,12 @@ public class AdminOrderServiceImpl implements AdminOrderService {
 
 	@Override
 	public List<OrderVO> listNewOrder(Map condMap) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return adminOrderDAO.selectNewOrderList(condMap);
 	}
 
 	@Override
 	public void modifyDeliveryState(Map deliveryMap) throws Exception {
-		// TODO Auto-generated method stub
+		adminOrderDAO.updateDeliveryState(deliveryMap);
 		
 	}
 

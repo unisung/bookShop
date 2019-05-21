@@ -529,12 +529,12 @@ function fn_process_pay_order(){
 					  </h2>
 					</td>
 					<td>
-					  <h2>${item.order_goods_qty }개<h2>
+					  <h2>${item.order_goods_qty }개</h2>
 					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
 					</td>
 					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.order_goods_qty}원</h2></td>
+					<td><h2>${1500 *item.order_goods_qty}원  ${1500 *item.goods_qty}원</h2></td>
 					<td>
 					  <h2>${item.goods_sales_price * item.order_goods_qty}원</h2>
 					  <input  type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goods_sales_price * item.order_goods_qty}" />
@@ -708,29 +708,29 @@ function fn_process_pay_order(){
 			<tbody>
 				<tr class="dot_line">
 					<td width=100>적립금</td>
-					<td><input name="discount_juklip" type="text" size="10" />원/1000원
+					<td><input name="discount_juklip" type="text" size="10" value="${couponVO.balance}"/>원/1000원
 						&nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두 사용하기</td>
 				</tr>
 				<tr class="dot_line">
 					<td>예치금</td>
-					<td><input name="discount_yechi" type="text" size="10" />원/1000원
+					<td><input name="discount_yechi" type="text" size="10" value="${couponVO.shopmoney}" />원/1000원
 						&nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두 사용하기</td>
 				</tr>
 				<tr class="dot_line">
 					<td>상품권 전환금</td>
-					<td cellpadding="5"><input name="discount_sangpum" type="text"
+					<td cellpadding="5"><input name="discount_sangpum" type="text" value="${couponVO.sangpumgwon}"
 						size="10" />원/0원 &nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두
 						사용하기</td>
 				</tr>
 				<tr class="dot_line">
 					<td>OK 캐쉬백 포인트</td>
-					<td cellpadding="5"><input name="discount_okcashbag" type="text"
+					<td cellpadding="5"><input name="discount_okcashbag" type="text" value="${couponVO.point}"
 						size="10" />원/0원 &nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두
 						사용하기</td>
 				</tr>
 				<tr class="dot_line">
 					<td>쿠폰할인</td>
-					<td cellpadding="5"><input name="discount_coupon" type="text"
+					<td cellpadding="5"><input name="discount_coupon" type="text" value="${couponVO.coupon}"
 						size="10" />원/0원 &nbsp;&nbsp;&nbsp; <input type="checkbox" /> 모두
 						사용하기</td>
 				</tr>

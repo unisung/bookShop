@@ -23,8 +23,17 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public void insertNewOrder(List<OrderVO> myOrderList) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		int order_id =selectOrderID();
+		for(int i=0;i<myOrderList.size();i++) {
+			OrderVO orderVO = myOrderList.get(i);
+			orderVO.setOrder_id(order_id);
+			sqlSession.insert("mapper.order.insertNewOrder",orderVO);
+		}
+	}
+	
+    //주문자 id 조회메소드
+	private int selectOrderID() {
+		return sqlSession.selectOne("mapper.order.selelctOrederID");
 	}
 
 	@Override
@@ -34,11 +43,8 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public void removeGoodsFromCart(List<OrderVO> myOrderList) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
+	public void removeGoodsFromCart(OrderVO myOrderVO) throws DataAccessException {
+		 sqlSession.delete("mapper.order.deleteGoodsFromCart", myOrderVO); 
+		 }
 }
 

@@ -4,6 +4,7 @@ drop table t_goods_detail_image;
 drop table t_shopping_order;
 drop table t_shopping_cart;
 
+
 --------------------------------------------------------
 --  DDL for Table T_GOODS_DETAIL_IMAGE
 --------------------------------------------------------
@@ -109,16 +110,32 @@ drop table t_shopping_cart;
 --  DDL for Table T_SHOPPING_CART
 --------------------------------------------------------
 
-  CREATE TABLE "T_SHOPPING_CART" 
-   (	"CART_ID" NUMBER(10,0) primary key, 
-	"GOODS_ID" NUMBER(20,0), 
-	"MEMBER_ID" VARCHAR2(20 BYTE), 
-	"DEL_YN" VARCHAR2(20 BYTE) DEFAULT 'N', 
-	"CREDATE" DATE DEFAULT sysdate, 
-	"CART_GOODS_QTY" NUMBER(4,0) DEFAULT 1
-   ) ;
+ --CREATE TABLE "T_SHOPPING_CART" 
+--  (	"CART_ID" NUMBER(10,0) primary key, 
+--	"GOODS_ID" NUMBER(20,0), 
+--	"MEMBER_ID" VARCHAR2(20 BYTE), 
+--	"DEL_YN" VARCHAR2(20 BYTE) DEFAULT 'N', 
+--	"CREDATE" DATE DEFAULT sysdate, 
+--	"CART_GOODS_QTY" NUMBER(4,0) DEFAULT 1
+--   ) ;
+   
+   
 --REM INSERTING into T_GOODS_DETAIL_IMAGE
 --SET DEFINE OFF;
+drop table t_shopping_cart;
+
+-- 수정한 상품 카트 테이블
+   CREATE TABLE "T_SHOPPING_CART" 
+   (	"CART_ID" NUMBER(10,0)not null, 
+	    "GOODS_ID" NUMBER(20,0) not null, 
+	    "MEMBER_ID" VARCHAR2(20) not null, 
+	    "DEL_YN" VARCHAR2(20) DEFAULT 'N', 
+	    "CREDATE" DATE DEFAULT sysdate, 
+	    "CART_GOODS_QTY" NUMBER(4,0) DEFAULT 1,
+	 CONSTRAINT T_SHOPPING_CART_PK 
+	       PRIMARY  KEY (CART_ID,GOODS_ID,MEMBER_ID)
+   ) ;
+   
 select * from T_GOODS_DETAIL_IMAGE;
 
 Insert into T_GOODS_DETAIL_IMAGE (IMAGE_ID,GOODS_ID,FILENAME,REG_ID,FILETYPE,CREDATE) values (346,394,'무작정 따라가기 홍콩 마카오.jpg','admin','main_image',to_date('18/10/16','RR/MM/DD'));
@@ -367,3 +384,18 @@ drop sequence SEQ_ORDER_ID;
 --------------------------------------------------------
 
    CREATE SEQUENCE  "SEQ_ORDER_ID"  MINVALUE 0 MAXVALUE 10000000 INCREMENT BY 1 START WITH 400 NOCACHE  ORDER  NOCYCLE ;
+
+   
+  create table t_shopping_coupon(
+  member_id varchar2(20) primary key,
+  balance number(9) default 0,
+  shopmoney number(9) default 0,
+  coupon number(9) default 0,
+  point number(10,2) default 0.0,
+  sangpumgwon number(9) default 0,
+  digitalmoney number(9) default 0
+  ); 
+   
+  insert into t_shopping_coupon values('hong',1000,9000,6000,2000,4000,9000);
+   
+  select * from t_shopping_coupon where member_id='hong'

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bookshop01.member.vo.CouponVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.dao.MyPageDAO;
 import com.bookshop01.mypage.vo.MyPageVO;
@@ -24,14 +25,12 @@ public class MyPageServiceImpl  implements MyPageService{
 
 	@Override
 	public List<OrderVO> listMyOrderGoods(String member_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return myPageDAO.selectMyOrderGoodsList(member_id);
 	}
 
 	@Override
 	public List findMyOrderInfo(String order_id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return myPageDAO.selectMyOrderInfo(order_id);
 	}
 
 	@Override
@@ -56,6 +55,11 @@ public class MyPageServiceImpl  implements MyPageService{
 	@Override
 	public MemberVO myDetailInfo(String member_id) throws Exception {
 		return myPageDAO.selectMyDetailInfo(member_id);
+	}
+
+	@Override
+	public CouponVO myCoupons(String member_id) throws Exception {
+		return myPageDAO.selectMyCoupons(member_id);
 	}
 
 	

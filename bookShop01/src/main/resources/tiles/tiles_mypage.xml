@@ -12,6 +12,11 @@
        <put-attribute name="title" value="마이페이지 상세정보" />
        <put-attribute name="body" value="/WEB-INF/views/mypage/myDetailInfo.jsp" />
     </definition>
+    
+    <definition name="/mypage/myOrderDetail" extends="baseLayout">
+       <put-attribute name="title" value="마이페이지 주문상세정보" />
+       <put-attribute name="body" value="/WEB-INF/views/mypage/myOrderDetail.jsp" />
+    </definition>
    
 </tiles-definitions>
 

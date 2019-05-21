@@ -118,5 +118,27 @@
 		    member_id=#{member_id}	
 	</update>
 	
+	<select id="selectMyOrderGoodsList" 
+	           resultMap="orderGoodsResult" parameterType="String">
+		<![CDATA[
+			select * from t_shopping_order
+			where member_id=#{member_id}
+			 order by pay_order_time desc
+		]]>	           
+	</select>
+	
+	<select  id="selectMyOrderInfo" parameterType="String" 
+	                 resultMap="orderGoodsResult">
+	<![CDATA[
+		select * from t_shopping_order
+		where order_id=#{order_id}
+	]]>
+	</select>
+	
+	<select id="selectMyCoupons"  parameterType="String" resultType="couponVO">
+		select * 
+		  from t_shopping_coupon
+		where member_id=#{member_id} 
+	</select>
 		
 </mapper>

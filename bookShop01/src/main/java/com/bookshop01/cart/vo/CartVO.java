@@ -8,9 +8,18 @@ public class CartVO {
 	private int goods_id;
 	private String member_id;
 	private int cart_goods_qty;
+	private int goods_qty;
 	private String creDate;
 	
 	
+	
+	
+	public int getGoods_qty() {
+		return goods_qty;
+	}
+	public void setGoods_qty(int goods_qty) {
+		this.goods_qty = goods_qty;
+	}
 	public int getCart_id() {
 		return cart_id;
 	}

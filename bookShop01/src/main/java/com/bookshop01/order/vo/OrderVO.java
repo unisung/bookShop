@@ -11,8 +11,8 @@ public class OrderVO {
 	private String goods_title;
 	private int goods_sales_price;
 	private int total_goods_price;
-	private int cart_goods_qty; //Àå¹Ù±¸´Ï¿¡ ´ã±ä Á¦Ç° ¼ö
-	private int order_goods_qty; //ÃÖÁ¾ ÁÖ¹®  Á¦Ç° ¼ö
+	private int cart_goods_qty; //ì¥ë°”êµ¬ë‹ˆì— ë‹´ê¸´ ì œí’ˆ ìˆ˜
+	private int order_goods_qty; //ìµœì¢… ì£¼ë¬¸ ì œí’ˆ ìˆ˜
 	private String orderer_name;
 	private String receiver_name;
 	private String receiver_hp1;
@@ -29,9 +29,9 @@ public class OrderVO {
 	private String pay_method;
 	private String card_com_name;
 	private String card_pay_month;
-	private String pay_orderer_hp_num; //ÈŞ´ëÆù °áÁ¦ ÀüÈ­¹øÈ£
+	private String pay_orderer_hp_num; //íœ´ëŒ€í° ê²°ì œ ì „í™”ë²ˆí˜¸
 	private String pay_order_time;
-	private String delivery_state;  //ÇöÀç ÁÖ¹® »óÇ° ¹è¼Û »óÅÂ
+	private String delivery_state;  //í˜„ì¬ ì£¼ë¬¸ ìƒí’ˆ ë°°ì†¡ ìƒíƒœ
 	
 	private String final_total_price;
 	private int goods_qty;

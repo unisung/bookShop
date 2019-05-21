@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bookshop01.common.base.BaseController;
+import com.bookshop01.member.vo.CouponVO;
 import com.bookshop01.member.vo.MemberVO;
 import com.bookshop01.mypage.service.MyPageService;
 import com.bookshop01.order.vo.OrderVO;
@@ -31,6 +32,8 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	MyPageService myPageService;
 	@Autowired
 	MemberVO memberVO;
+	@Autowired
+	CouponVO couponVO;
 	@Override
 	@RequestMapping(value="/myPageMain.do", method=RequestMethod.GET)
 	public ModelAndView myPageMain(@RequestParam(required = false,value="message") String message, 
@@ -46,20 +49,31 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String member_id = memberVO.getMember_id();
 		
 		List<OrderVO> myOrderList = myPageService.listMyOrderGoods(member_id);
+		couponVO = myPageService.myCoupons(member_id);
 		
 		mav.addObject("message",message);
 		mav.addObject("myOrderList",myOrderList);
+		mav.addObject("couponVO",couponVO);
 		
 		return mav;
 	}
 	
 	
 	@Override
-	public ModelAndView myOrderDetail(String order_id, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/myOrderDetail.do",method=RequestMethod.GET)
+	public ModelAndView myOrderDetail(@RequestParam("order_id")String order_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		HttpSession session = request.getSession();
+		MemberVO orderer=(MemberVO)session.getAttribute("memberInfo");
+		
+		List<OrderVO> myOrderList = myPageService.findMyOrderInfo(order_id);
+		mav.addObject("orderer", orderer);
+		mav.addObject("myOrderList", myOrderList);
+		return mav;
 	}
+	
 	@Override
 	public ModelAndView cancelMyOrder(String order_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -67,9 +81,10 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		return null;
 	}
 	@Override
-	public ModelAndView listMyOrderHistory(Map<String, String> dateMap, HttpServletRequest request,
+	@RequestMapping(value="/listMyOrderHistory.do", method=RequestMethod.GET)
+	public ModelAndView listMyOrderHistory(@RequestParam Map<String, String> dateMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

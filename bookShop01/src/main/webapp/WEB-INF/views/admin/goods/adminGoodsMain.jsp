@@ -10,6 +10,11 @@
 <meta charset="utf-8">
 <script>
 function search_goods_list(fixeSearchPeriod){
+	/*<form method='get' 
+	                 action='${contextPath}/admin/goods/adminGoodsMain.do'>   
+		<input name='fixedSearchPeriod' value=''>
+		<input type='submit'>
+	  </from> */
 	var formObj=document.createElement("form");
 	var i_fixedSearch_period = document.createElement("input");
 	i_fixedSearch_period.name="fixedSearchPeriod";
@@ -19,6 +24,8 @@ function search_goods_list(fixeSearchPeriod){
     formObj.method="get";
     formObj.action="${contextPath}/admin/goods/adminGoodsMain.do";
     formObj.submit();
+    
+    /* href='${contextPath}/admin/goods/adminGoodsMain.do?fixedSearchPeriod='+value */
 }
 
 
