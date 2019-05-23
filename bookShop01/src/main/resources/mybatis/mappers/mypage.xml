@@ -141,4 +141,26 @@
 		where member_id=#{member_id} 
 	</select>
 		
+	<select id="selectMyOrderHistoryList" 
+	           parameterType="java.util.Map" resultMap="orderGoodsResult">
+	
+		 select *
+		   from t_shopping_order
+		 where member_id=#{member_id}
+		    and to_char(pay_order_time,'yyyy-mm-dd') between #{beginDate}
+		    and #{endDate}
+	      <if test="search_condition!='' and search_condition!=null">
+	      		<if test="search_condition=='2015'"></if>
+	      		<if test="search_condition=='2014'">
+	      		   and receiver_name like '%'||#{search_value}||'%'
+	      		</if>
+	      		<if test="search_condition=='2013'">
+	      		   and orderer_name like '%'||#{search_value}||'%'
+	      		</if>
+	      		<if test="search_condition=='2012'">
+	      		  and order_id =to_number(#{search_value})
+	      		</if>
+	      </if> 	    
+		   order by pay_order_time desc 
+		</select>	
 </mapper>

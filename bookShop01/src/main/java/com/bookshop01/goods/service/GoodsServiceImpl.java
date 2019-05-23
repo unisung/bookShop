@@ -53,8 +53,17 @@ public class GoodsServiceImpl implements GoodsService{
 
 	@Override
 	public List<GoodsVO> searchGoods(String searchWord) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return goodsDAO.selectGoodsBySearchWord(searchWord);
+	}
+
+	@Override
+	public int getListCount(String searchWord) throws Exception {
+		return goodsDAO.getListCount(searchWord);
+	}
+
+	@Override
+	public List<GoodsVO> searchGoods(GoodsVO goodsVO) throws Exception {
+		return goodsDAO.selectGoodsBySearchWord(goodsVO);
 	}
 	
 	

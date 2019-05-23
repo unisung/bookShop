@@ -12,6 +12,79 @@
       pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
       pageContext.setAttribute("br", "<br/>"); //br 태그
 %> 
+<script type="text/javascript">
+	function add_cart(goods_id) {
+		$.ajax({
+			type : "post",
+			async : false, //false인 경우 동기식으로 처리한다.
+			url : "${contextPath}/cart/addGoodsInCart.do",
+			data : {
+				goods_id:goods_id
+			},
+			success : function(data, textStatus) {//readystate=4, httpstatus=200
+				//alert(data);
+			//	$('#message').append(data);
+				if(data.trim()=='add_success'){
+					/* imagePopup('open', '.layer01');	 */
+					alert('상품이 카트에 등록되었습니다.');
+				}else if(data.trim()=='already_existed'){
+					alert("이미 카트에 등록된 상품입니다.");	
+				}else {
+					alert("로그인 후 처리하세요");
+				}
+			},
+			error : function(data, textStatus) {
+				alert("에러가 발생했습니다."+data);
+			},
+			complete : function(data, textStatus) {
+				//alert("작업을완료 했습니다");
+			}
+		}); //end ajax	
+	}
+</script>
+<script>	
+	function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+		var total_price,final_total_price,_goods_qty;
+		var cart_goods_qty=1;
+		/* var cart_goods_qty=document.getElementById("cart_goods_qty"); */
+		
+		 _order_goods_qty=cart_goods_qty; //장바구니에 담긴 개수 만큼 주문한다.
+		var formObj=document.createElement("form");
+		var i_goods_id = document.createElement("input"); 
+	    var i_goods_title = document.createElement("input");
+	    var i_goods_sales_price=document.createElement("input");
+	    var i_fileName=document.createElement("input");
+	    var i_order_goods_qty=document.createElement("input"); 
+	    
+	   i_goods_id.name="goods_id";
+	    i_goods_title.name="goods_title";
+	    i_goods_sales_price.name="goods_sales_price";
+	    i_fileName.name="goods_fileName";
+	    i_order_goods_qty.name="order_goods_qty";
+	    
+	    i_goods_id.value=goods_id;
+	    i_order_goods_qty.value=_order_goods_qty;
+	    i_goods_title.value=goods_title;
+	    i_goods_sales_price.value=goods_sales_price;
+	    i_fileName.value=fileName; 
+	    
+	    alert(goods_title);
+	    alert(_order_goods_qty);
+
+	    formObj.appendChild(i_goods_id);
+	    formObj.appendChild(i_goods_title);
+	    formObj.appendChild(i_goods_sales_price);
+	    formObj.appendChild(i_fileName);
+	    formObj.appendChild(i_order_goods_qty);
+
+	    alert(i_goods_sales_price.value);
+	    
+	    document.body.appendChild(formObj); 
+	    formObj.method="post";
+	    formObj.action="${contextPath}/order/orderEachGoods.do";
+	    formObj.submit(); 
+	}	
+</script>
 <head>
  <title>검색 도서 목록 페이지</title>
 </head>
@@ -110,8 +183,8 @@
 					<td><input type="checkbox" value=""></td>
 					<td class="buy_btns">
 						<UL>
-							<li><a href="#">장바구니</a></li>
-							<li><a href="#">구매하기</a></li>
+							<li><a class="cart" href="javascript:add_cart('${item.goods_id }')">장바구니</a></li>
+							<li><a class="cart" href="javascript:fn_order_each_goods('${item.goods_id}','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}')">구매하기</a></li>
 							<li><a href="#">비교하기</a></li>
 						</UL>
 					</td>
@@ -122,18 +195,22 @@
 	<div class="clear"></div>
 	<div id="page_wrap">
 		<ul id="page_control">
-			<li><a class="no_border" href="#">Prev</a></li>
+			<c:if test="${beginSegmet>10}">
+			       <li><a class="no_border" href="#">Prev</a></li>
+			</c:if>
 			<c:set var="page_num" value="0" />
-			<c:forEach var="count" begin="1" end="10" step="1">
+			<c:forEach var="count" begin="1" end="${total_page}" step="1">
 				<c:choose>
 					<c:when test="${count==1 }">
 						<li><a class="page_contrl_active" href="#">${count+page_num*10 }</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="#">${count+page_num*10 }</a></li>
+						<li><a href="${contextPath}/goods/searchGoods.do?pageNum=${count}&searchWord=${searchWord}">${count+page_num*10 }</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<li><a class="no_border" href="#">Next</a></li>
+			<c:if test="${endSegmet>10}">
+			       <li><a class="no_border" href="#">Next</a></li>
+			</c:if>
 		</ul>
 	</div>

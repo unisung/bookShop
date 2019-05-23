@@ -26,6 +26,41 @@ public class GoodsVO {
 	private String goods_recommendation;
 	private Date   goods_credate;
 	
+	private int beginRow;
+	private int endRow;
+    private String searchWord;
+    
+    
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+
+	public int getBeginRow() {
+		return beginRow;
+	}
+
+	public void setBeginRow(int beginRow) {
+		this.beginRow = beginRow;
+	}
+
+	public int getEndRow() {
+		return endRow;
+	}
+
+
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
+
+
+
+
+
 	public GoodsVO() {
 	}
 

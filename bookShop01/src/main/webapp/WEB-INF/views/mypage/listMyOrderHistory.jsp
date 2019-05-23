@@ -8,6 +8,55 @@
 <head>
 <meta   charset="utf-8">
 <script>
+function search_order_history_search_condition(beginYear,beginMonth,beginDay,endYear,endMonth,endDay){
+	var formObj=document.createElement("form");
+	var i_beginYear=document.createElement("input");
+	      i_beginYear.name="beginYear";
+	      i_beginYear.value=beginYear;
+    var i_beginMonth=document.createElement("input");
+	      i_beginMonth.name="beginMonth";
+	      i_beginMonth.value=beginMonth;	      
+	var i_beginDay=document.createElement("input");
+	      i_beginDay.name="beginDay";
+	      i_beginDay.value=beginDay;
+	      
+	var i_endYear=document.createElement("input");
+	      i_endYear.name="endYear";
+	      i_endYear.value=endYear;
+    var i_endMonth=document.createElement("input");
+	      i_endMonth.name="endMonth";
+	      i_endMonth.value=endMonth;	      
+	var i_endDay=document.createElement("input");
+	      i_endDay.name="endDay";
+	      i_endDay.value=endDay;
+	      
+    var i_search_condition = document.createElement("input");
+          i_search_condition.name="search_condition";
+          i_search_condition.value=document.getElementById("search_condition").value;
+          
+    var i_search_value = document.createElement("input");
+          i_search_value.name="search_value";
+          i_search_value.value=document.getElementById("search_value").value;
+    
+          
+	      formObj.appendChild(i_beginYear);
+	      formObj.appendChild(i_beginMonth);
+	      formObj.appendChild(i_beginDay);
+	      formObj.appendChild(i_endYear);
+	      formObj.appendChild(i_endMonth);
+	      formObj.appendChild(i_endDay);
+
+	      formObj.appendChild(i_search_condition);
+	      formObj.appendChild(i_search_value);
+	      
+	      
+	      document.body.appendChild(formObj);
+	      
+	      formObj.method="post";
+	      formObj.action="${contextPath}/mypage/listMyOrderHistorySearch.do";
+	      formObj.submit();
+	      
+}
 function search_order_history(fixedSearchPeriod){
 	var formObj=document.createElement("form");
 	var i_fixedSearch_period = document.createElement("input");
@@ -115,14 +164,16 @@ function fn_cancel_order(order_id){
 				</tr>
 				<tr>
 				  <td>
-				    <select name="search_condition">
+				    <select name="search_condition" id="search_condition">
 						<option value="2015" checked>전체</option>
 						<option value="2014">수령자</option>
 						<option value="2013">주문자</option>
 						<option value="2012">주문번호</option>
 					</select>
-					<input  type="text"  size="30" />  
+					<input  type="text"  name='search_value' size="30"  id="search_value"/> 
+					<a href="javascript:search_order_history_search_condition('${beginYear}','${beginMonth}','${beginDay}','${endYear}','${endMonth}','${endDay}')"> 
 					<input   type="button"  value="조회"/>
+					</a>
 				  </td>
 				</tr>
 				<tr>

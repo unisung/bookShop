@@ -30,8 +30,7 @@ public class MyPageDAOImpl implements MyPageDAO{
 
 	@Override
 	public List<OrderVO> selectMyOrderHistoryList(Map dateMap) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.mypage.selectMyOrderHistoryList",dateMap);
 	}
 
 	@Override

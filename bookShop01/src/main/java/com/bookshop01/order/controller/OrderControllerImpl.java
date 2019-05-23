@@ -49,7 +49,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	if(isLogOn==null|| isLogOn==false) {
 		session.setAttribute("orderInfo", _orderVO);
 		session.setAttribute("action", "/order/orderEachGoods.do");
-		return new ModelAndView("reidrect:/member/loginForm.do");
+		return new ModelAndView("redirect:/member/loginForm.do");
 	}else {
 		if(action!=null && action.equals("/order/orderEachGoods.do")) {
 			orderVO =(OrderVO)session.getAttribute("orderInfo");

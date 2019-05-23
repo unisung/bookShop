@@ -35,8 +35,7 @@ public class MyPageServiceImpl  implements MyPageService{
 
 	@Override
 	public List<OrderVO> listMyOrderHistory(Map dateMap) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return myPageDAO.selectMyOrderHistoryList(dateMap);
 	}
 
 	@Override
