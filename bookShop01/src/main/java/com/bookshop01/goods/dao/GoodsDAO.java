@@ -15,4 +15,6 @@ public interface GoodsDAO {
 	public List<GoodsVO> selectGoodsBySearchWord(String searchWord) throws DataAccessException;
 	public int getListCount(String searchWord) throws DataAccessException;
 	public List<GoodsVO> selectGoodsBySearchWord(GoodsVO goodsVO) throws DataAccessException;
+	public int getListCountBySort(String sort)throws DataAccessException;
+	public List<GoodsVO> searchGoodsBySort(GoodsVO goodsVO)throws DataAccessException;
 }

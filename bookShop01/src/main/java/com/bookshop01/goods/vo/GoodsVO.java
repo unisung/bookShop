@@ -30,7 +30,7 @@ public class GoodsVO {
 	private int endRow;
     private String searchWord;
     
-    
+	public GoodsVO() {}
 
 	public String getSearchWord() {
 		return searchWord;
@@ -59,10 +59,6 @@ public class GoodsVO {
 
 
 
-
-
-	public GoodsVO() {
-	}
 
 	
 

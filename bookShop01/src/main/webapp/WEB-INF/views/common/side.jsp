@@ -45,12 +45,12 @@
 	<li>
 		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;국내외 도서</h3>
 		<ul>
-			<li><a href="${contextPath}/goods/goodsList.do">IT/인터넷</a></li>
-			<li><a href="#">경제/경영</a></li>
-			<li><a href="#">대학교재</a></li>
-			<li><a href="#">자기계발</a></li>
-			<li><a href="#">자연과학/공학</a></li>
-			<li><a href="#">역사/인문학</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?sort=IT/인터넷">IT/인터넷</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?sort=경제/경영">경제/경영</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?sort=대학교재">대학교재</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?sort=자기계발">자기계발</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?sort=자연과학/공학">자연과학/공학</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?sort=역사/인문학">역사/인문학</a></li>
 		</ul>
 	</li>
 	<li>

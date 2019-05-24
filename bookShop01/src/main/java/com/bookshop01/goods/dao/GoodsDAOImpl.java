@@ -23,8 +23,7 @@ public class GoodsDAOImpl  implements GoodsDAO{
 
 	@Override
 	public List<String> selectKeywordSearch(String keyword) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("mapper.goods.selectKeywordSearch", keyword);
 	}
 
 	@Override
@@ -52,6 +51,16 @@ public class GoodsDAOImpl  implements GoodsDAO{
 	@Override
 	public List<GoodsVO> selectGoodsBySearchWord(GoodsVO goodsVO) throws DataAccessException {
 		return sqlSession.selectList("mapper.goods.selectGoodsBySearchGoods", goodsVO);
+	}
+
+	@Override
+	public int getListCountBySort(String sort) throws DataAccessException {
+		return sqlSession.selectOne("mapper.goods.selectGoodsCountBySort", sort);
+	}
+
+	@Override
+	public List<GoodsVO> searchGoodsBySort(GoodsVO goodsVO) throws DataAccessException {
+		return sqlSession.selectList("mapper.goods.selectGoodsBySort", goodsVO);
 	}
 
 	

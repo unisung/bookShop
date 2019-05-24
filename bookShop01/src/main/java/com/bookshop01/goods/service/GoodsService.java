@@ -15,4 +15,6 @@ public interface GoodsService {
 	public List<GoodsVO> searchGoods(String searchWord) throws Exception;
 	public int getListCount(String searchWord)  throws Exception;
 	public List<GoodsVO> searchGoods(GoodsVO goodsVO) throws Exception;
+	public int getListCountBySort(String sort) throws Exception;
+	public List<GoodsVO> searchGoodsBySort(GoodsVO goodsVO) throws Exception;
 }

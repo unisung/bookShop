@@ -18,7 +18,9 @@
 			url : "${contextPath}/goods/keywordSearch.do",
 			data : {keyword:value},
 			success : function(data, textStatus) {
-			    var jsonInfo = JSON.parse(data);
+				var ca= /\+/g;//정규표현식 /바꿀패턴/g; - global(전체에 적용)
+			    var jsonInfo = JSON.parse(decodeURIComponent(data.replace(ca," ")));
+			    alert(jsonInfo);
 				displayResult(jsonInfo);
 			},
 			error : function(data, textStatus) {
@@ -36,6 +38,7 @@
 		if(count > 0) {
 		    var html = '';
 		    for(var i in jsonInfo.keyword){
+		    	alert(jsonInfo.keyword[i]);
 			   html += "<a href=\"javascript:select('"+jsonInfo.keyword[i]+"')\">"+jsonInfo.keyword[i]+"</a><br/>";
 		    }
 		    var listView = document.getElementById("suggestList");
